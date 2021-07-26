@@ -14,12 +14,9 @@
   "author": "GameWatch21",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.13.2",
-    "node-fetch": "^2.6.1",
-    "parse-ms": "^2.1.0",
-    "querystring": "^0.2.0",
-    "quick.db": "^7.1.2"
+    "discord.js": "^12.5.3",
+    "fs": "0.0.1-security",
+    "mongodb": "^4.0.1",
+    "mongoose": "^5.13.3"
   }
 }
