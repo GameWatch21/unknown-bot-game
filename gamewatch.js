@@ -1,5 +1,6 @@
 const discord = require('discord.js');
 const client = new discord.Client();
+client.commands = new discord.Collection();
 const mongoose = require('mongoose');
 
 const status = process.env['STATUS'];
@@ -19,7 +20,7 @@ const commandFiles = fs
 	.filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./freaking-commands-here/${file}`);
-	client.commands(command.name, command);
+	client.commands.set(command.name, command);
 }
 
 mongoose
