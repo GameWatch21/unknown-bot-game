@@ -3,13 +3,13 @@ const client = new discord.Client();
 client.commands = new discord.Collection();
 const mongoose = require('mongoose');
 
-const status = process.env['STATUS'];
+const status = process.env.STATUS;
 
-const prefix = process.env['PREFIX'];
+const prefix = process.env.PREFIX;
 
-const token = process.env['TOKEN'];
+const token = process.env.TOKEN;
 
-const mongodb_uri = process.env['MONGODB_URI']
+const mongodb_uri = process.env.MONGODB_URI;
 /*
 const { prefix, status, token , mongodb_uri } = require('./config.json');
 */
@@ -70,7 +70,7 @@ client.on('message', message => {
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply('There is something wrong when executing the command, maybe a unknown bug?');
 	}
 });
 
