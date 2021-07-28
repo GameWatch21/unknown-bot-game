@@ -2,16 +2,15 @@ const discord = require('discord.js');
 const client = new discord.Client();
 client.commands = new discord.Collection();
 const mongoose = require('mongoose');
-
 const status = process.env.STATUS;
 
 const prefix = process.env.PREFIX;
 
 const token = process.env.TOKEN;
 
-const mongodb_uri = process.env.MONGODB_URI;
+const mongodb_url = process.env.MONGODB_URL;
 /*
-const { prefix, status, token , mongodb_uri } = require('./config.json');
+const { prefix, status, token , mongodb_url } = require('./config.json');
 */
 const fs = require('fs');
 
@@ -22,11 +21,7 @@ for (const file of commandFiles) {
 	const command = require(`./freaking-commands-here/${file}`);
 	client.commands.set(command.name, command);
 }
-
-mongoose
-	.connect(
-		mongodb_uri,
-		{
+mongoose.connect(mongodb_url, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useFindAndModify: false,

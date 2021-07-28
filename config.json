@@ -2,5 +2,6 @@
 {
   "prefix" : "",
   "token": "", 
-  "status": ""
+  "status": "",
+  "mongodb_url": ""
 }
