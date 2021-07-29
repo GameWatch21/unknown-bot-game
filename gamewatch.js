@@ -21,19 +21,14 @@ for (const file of commandFiles) {
 	const command = require(`./freaking-commands-here/${file}`);
 	client.commands.set(command.name, command);
 }
-mongoose.connect(mongodb_url, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useFindAndModify: false,
-			useCreateIndex: true
-		}
-	)
-	.then(() => {
-		console.log('Connected to MongoDB');
-	})
-	.catch(err => {
-		console.log('Unable to connect to MongoDB Database.\nError: ' + err);
-	});
+const database = fs
+	.readdirSync('./database')
+	.filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const command = require(`./databaae/${file}`);
+	client.commands.set(command.name, command);
+}
+
 
 client.once('ready', () => {
 	console.log('Time for the unknown to be known');

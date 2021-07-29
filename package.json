@@ -1,6 +1,6 @@
 {
   "name": "UnknownBot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Just a ordinary Adventure bot",
   "main": "gamewatch.js",
   "engines": {
@@ -15,8 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
-    "fs": "0.0.1-security",
+    "fs": "^0.0.2",
     "mongodb": "^4.0.1",
-    "mongoose": "^5.13.3"
+    "mongoose": "^5.13.3",
+    "quick.db": "^7.1.3"
   }
 }
