@@ -1,14 +1,11 @@
 const discord = require('discord.js');
 const client = new discord.Client();
 client.commands = new discord.Collection();
-const mongoose = require('mongoose');
 const status = process.env.STATUS;
 
 const prefix = process.env.PREFIX;
 
 const token = process.env.TOKEN;
-
-const mongodb_url = process.env.MONGODB_URL;
 /*
 const { prefix, status, token , mongodb_url } = require('./config.json');
 */
@@ -21,14 +18,6 @@ for (const file of commandFiles) {
 	const command = require(`./freaking-commands-here/${file}`);
 	client.commands.set(command.name, command);
 }
-const database = fs
-	.readdirSync('./database')
-	.filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./databaae/${file}`);
-	client.commands.set(command.name, command);
-}
-
 
 client.once('ready', () => {
 	console.log('Time for the unknown to be known');

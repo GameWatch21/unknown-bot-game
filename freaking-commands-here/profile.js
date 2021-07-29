@@ -5,9 +5,13 @@ const profiles = require("./../database/profile.js");
 module.exports = {
   name: "profile",
   description: "No, this is not a profile command, dont trust anyone",
+  aliases: ["pro"],
   execute(message, args){
+    if(profiles.register === undefined){
+      message.channel.send("Please Register with `u!register`");
+    } else {
     const profile = new Discord.MessageEmbed()
-    .setTitle(`${message.author.username}'s profile`)
+     .setTitle(`${message.author.username}'s profile`)
     .addFields(
       {
         name: "Ukwon",
@@ -32,7 +36,7 @@ module.exports = {
       )
     .setColor("BLUE")
     .setFooter("Created by Unknown Dev (GameWatch21)");
-    //A TEMPLATE NOT YET CREATED
     message.channel.send(profile)
+      }
     }
   }
