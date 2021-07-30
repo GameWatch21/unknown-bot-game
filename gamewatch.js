@@ -1,17 +1,13 @@
 const discord = require('discord.js');
 const client = new discord.Client();
 client.commands = new discord.Collection();
-const mongoose = require('mongoose');
-
 const status = process.env.STATUS;
 
 const prefix = process.env.PREFIX;
 
 const token = process.env.TOKEN;
-
-const mongodb_uri = process.env.MONGODB_URI;
 /*
-const { prefix, status, token , mongodb_uri } = require('./config.json');
+const { prefix, status, token , mongodb_url } = require('./config.json');
 */
 const fs = require('fs');
 
@@ -22,23 +18,6 @@ for (const file of commandFiles) {
 	const command = require(`./freaking-commands-here/${file}`);
 	client.commands.set(command.name, command);
 }
-
-mongoose
-	.connect(
-		mongodb_uri,
-		{
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useFindAndModify: false,
-			useCreateIndex: true
-		}
-	)
-	.then(() => {
-		console.log('Connected to MongoDB');
-	})
-	.catch(err => {
-		console.log('Unable to connect to MongoDB Database.\nError: ' + err);
-	});
 
 client.once('ready', () => {
 	console.log('Time for the unknown to be known');
