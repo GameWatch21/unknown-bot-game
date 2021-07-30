@@ -1,41 +1,51 @@
 const Discord = require("discord.js");
-const db = require("quick.db");
-const profiles = require("./../database/profile.js");
 
 module.exports = {
   name: "profile",
   description: "No, this is not a profile command, dont trust anyone",
   aliases: ["pro"],
-  execute(message, args){
-    if(profiles.register === undefined){
-      message.channel.send("Please Register with `u!register`");
-    } else {
+  execute(message, args , db){
+   
+  // [ DATABASE SECTION ]
+  const author = message.author.id
+  const ukwon = db.get(`ukwon.${author}`);
+  const stamina = db.get(`stamina.${author}`);
+  const level = db.get(`level.${author}`);
+  const location = db.get(`location.${author}`);
+  const exp = db.get(`exp.${author}`);
+  const register = db.get(`register.${author}`) || false;
+  // [ DATABASE SECTION END ]
+  
+    
     const profile = new Discord.MessageEmbed()
      .setTitle(`${message.author.username}'s profile`)
     .addFields(
       {
         name: "Ukwon",
-        value: `[EMOJI]${profiles.ukwon}`
+        value: `[EMOJI]${ukwon}`
       },
       {
         name: "Stamina",
-        value: `[EMOJI]${profiles.stamina}`
+        value: `[EMOJI]${stamina}`
       },
       {
         name: "Location",
-        value: `[EMOJI]${profiles.location}`
+        value: `[EMOJI]${location}`
       },
       {
         name: "Level",
-        value: `[EMOJI]${profiles.level}`
+        value: `[EMOJI]${level}`
       },
       {
         name: "EXP",
-        value: `[EMOJI]${profiles.exp}`
+        value: `[EMOJI]${exp}`
       }
       )
     .setColor("BLUE")
     .setFooter("Created by Unknown Dev (GameWatch21)");
+    if(register === false){
+      message.channel.send("Register as one of the Unknown species at `u!register`");
+     } else {
     message.channel.send(profile)
       }
     }

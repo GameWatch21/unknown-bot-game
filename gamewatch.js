@@ -36,7 +36,7 @@ client.on('message', message => {
 		.trim()
 		.split(/ +/);
 	const commandName = args.shift().toLowerCase();
-
+  const db = require("quick.db");
 	const command =
 		client.commands.get(commandName) ||
 		client.commands.find(
@@ -46,7 +46,7 @@ client.on('message', message => {
 	if (!command) return;
 
 	try {
-		command.execute(message, args);
+		command.execute(message, args, db);
 	} catch (error) {
 		console.error(error);
 		message.reply('There is something wrong when executing the command, maybe a unknown bug?');
