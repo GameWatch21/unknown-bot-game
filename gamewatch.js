@@ -1,6 +1,10 @@
-const discord = require('discord.js');
-const client = new discord.Client();
-client.commands = new discord.Collection();
+const { Client , Intents , Collection }= require('discord.js');
+const gamewatchIntents = new Intents();
+gamewatchIntents.add('GUILD_PRESENCES', 'GUILD_MEMBERS');
+const client = new Client({
+  intents: gamewatchIntents
+   });
+client.commands = new Collection();
 const status = process.env.STATUS;
 
 const prefix = process.env.PREFIX;
@@ -12,8 +16,8 @@ const { prefix, status, token , mongodb_url } = require('./config.json');
 const fs = require('fs');
 
 const commandFiles = fs
-	.readdirSync('./freaking-commands-here')
-	.filter(file => file.endsWith('.js'));
+	.readdirSync('./freaking-commands-here')  
+  .filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./freaking-commands-here/${file}`);
 	client.commands.set(command.name, command);
@@ -37,7 +41,7 @@ client.on('message', message => {
 		.split(/ +/);
 	const commandName = args.shift().toLowerCase();
   const db = require("quick.db");
-	const command =
+  const command =
 		client.commands.get(commandName) ||
 		client.commands.find(
 			cmd => cmd.aliases && cmd.aliases.includes(commandName)

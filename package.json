@@ -4,7 +4,8 @@
   "description": "Just a ordinary Adventure bot",
   "main": "gamewatch.js",
   "engines": {
-    "node": "12.x"
+    "node": "14.x",
+    "npm": ">=7.0.0"
   },
   "scripts": {
     "start": "node gamewatch.js",
@@ -14,7 +15,7 @@
   "author": "GameWatch21",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.0.0-dev.t1627722888.65ae064",
     "fs": "^0.0.2",
     "quick.db": "^7.1.3"
   }
