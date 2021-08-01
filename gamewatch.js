@@ -1,6 +1,6 @@
 const { Client , Intents , Collection }= require('discord.js');
 const gamewatchIntents = new Intents();
-gamewatchIntents.add('GUILD_PRESENCES', 'GUILD_MEMBERS');
+gamewatchIntents.add('GUILDS', 'GUILD_PRESENCES', 'GUILD_MEMBERS' , 'GUILD_MESSAGES', 'GUILD_EMOJIS_AND_STICKERS');
 const client = new Client({
   intents: gamewatchIntents
    });
@@ -32,7 +32,7 @@ client.once('ready', () => {
 		};
 });
 
-client.on('message', message => {
+client.on('messageCreate', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content

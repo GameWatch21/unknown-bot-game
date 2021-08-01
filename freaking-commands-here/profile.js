@@ -46,7 +46,7 @@ module.exports = {
     if(register === false){
       message.channel.send("Register as one of the Unknown species at `u!register`");
      } else {
-    message.channel.send(profile)
+    message.channel.send({ embeds: [profile] })
       }
     }
   }
