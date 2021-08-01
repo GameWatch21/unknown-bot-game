@@ -32,7 +32,34 @@ client.once('ready', () => {
 		};
 });
 
+client.on('interactionCreate', interaction => {
+  if (!interaction.isButton()) return;
+  
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'test') {
+		interaction.reply('Testing go brrr, ngl this is a bad idea!');
+	}
+	
+});
+
 client.on('messageCreate', message => {
+  if (!client.application?.owner) return client.application?.fetch();
+  if (message.content.toLowerCase() === 'u!deploy' && message.author.id === client.application?.owner.id) {
+		const data = [
+			{
+				name: 'bruh',
+				description: 'Why do we need this',
+			},
+			{
+				name: 'test',
+				description: 'Testing go brrr',
+			},
+		];
+
+		const slash_command = client.guilds.cache.get('647031060521025540')?.commands.set(data);
+    message.channel.send("Yep, deployed" + "```\n" + data + "\n```");
+		console.log(slash_command);
+	}
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content
