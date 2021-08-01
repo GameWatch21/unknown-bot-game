@@ -14,6 +14,7 @@ module.exports = {
   const location = db.get(`location.${author}`);
   const exp = db.get(`exp.${author}`);
   const register = db.get(`register.${author}`) || false;
+  const location_emoji = db.get(`location_emoji.${author}`);
   // [ DATABASE SECTION END ]
   
     
@@ -30,7 +31,7 @@ module.exports = {
       },
       {
         name: "Location",
-        value: `[EMOJI]${location}`
+        value: location_emoji + `${location}`
       },
       {
         name: "Level",
